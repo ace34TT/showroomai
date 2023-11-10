@@ -1,18 +1,21 @@
 import desert from "./desert.png";
 import studio from "./studio.png";
-import rooftop from "./studio.png";
+import rooftop from "./rooftop.png";
 
 export const scenes = [
   {
-    name: "studio",
+    name: "Studio",
     image: studio,
+    prompt: "studio light house",
   },
   {
-    name: "desert",
+    name: "Desert",
     image: desert,
+    prompt: "desert",
   },
   {
-    name: "rooftop",
+    name: "Rooftop",
     image: rooftop,
+    prompt: "building rooftop",
   },
 ];
