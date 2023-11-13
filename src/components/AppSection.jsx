@@ -63,7 +63,7 @@ const AppSection = () => {
         </div>
       ) : (
         <div
-          className="w-full bg-white prose max-w-none py-10 md:py-28 flex flex-col items-center h-fit px-10"
+          className="w-full bg-white prose max-w-none py-10 md:py-10 flex flex-col items-center h-fit px-10"
           id="app-section"
         >
           <h1 className="mx-auto text-lg md:text-4xl">

@@ -1,3 +1,4 @@
+import Testimonials from "./../components/Testimonials";
 import AppSection from "./../components/AppSection";
 import React from "react";
 
@@ -30,6 +31,7 @@ const LandingPage = () => {
         </div>
         <div className="bg-black w-full h-full opacity-50 absolute top-0 left-0 z-0" />
       </section>
+      <Testimonials />
       <AppSection />
     </>
   );
