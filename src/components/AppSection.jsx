@@ -4,8 +4,9 @@ import SceneList from "./SwiperGallery";
 import { makeRequest } from "./../services/replicate.service";
 import { scenes } from "./../assets/scenes";
 import { useNavigate } from "react-router-dom";
-import LoadingScreen from "./LoadingScreen";
 import { PuffLoader } from "react-spinners";
+import { isMobile } from "react-device-detect";
+import SceneCard from "./SceneCard";
 
 const AppSection = () => {
   const navigate = useNavigate();
@@ -61,14 +62,17 @@ const AppSection = () => {
           </div>
         </div>
       ) : (
-        <div className="w-full bg-white prose max-w-none py-28 flex flex-col items-center h-fit">
-          <h1 className="mx-auto">
-            <span className="font-light"> step 1 : </span> Upload your car
-            picture{" "}
+        <div
+          className="w-full bg-white prose max-w-none py-10 md:py-28 flex flex-col items-center h-fit px-10"
+          id="app-section"
+        >
+          <h1 className="mx-auto text-lg md:text-4xl">
+            <span className="font-light text-center"> step 1 : </span> Upload
+            your car picture{" "}
           </h1>
           <div
             {...getRootProps()}
-            className={`w-6/12 aspect-w-10 aspect-h-2 mx-auto ${
+            className={`w-full md:w-10/12 lg:w-6/12 aspect-w-10 aspect-h-8  md:aspect-h-4 lg:aspect-h-2 mx-auto ${
               !image && `border-dashed border-2 border-[#00D1FF] `
             }  rounded-md overflow-hidden cursor-pointer`}
           >
@@ -78,7 +82,7 @@ const AppSection = () => {
                 <img
                   src={imageUrl}
                   alt=""
-                  className="m-0 w-full h-auto object-fill"
+                  className="m-0 w-full h-full object-cover"
                 />
               </div>
             ) : (
@@ -94,10 +98,30 @@ const AppSection = () => {
               </div>
             )}
           </div>
-          <h1 className="mx-auto mt-20">
+          <h1 className="mx-auto mt-10 md:mt-20 text-lg md:text-4xl">
             <span className="font-light"> step 2 : </span> Select a style
           </h1>
-          <SceneList setScene={setScene} scene={scene} />
+          {isMobile ? (
+            <div className="max-h-[598px] overflow-y-scroll flex flex-col gap-2">
+              {scenes.map((item, key) => {
+                return (
+                  <div onClick={() => setScene(key)} className="" key={key}>
+                    <SceneCard
+                      name={item.name}
+                      image={item.image}
+                      key={key}
+                      className={
+                        scene === key ? "border-2 border-neutral-900" : ""
+                      }
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <SceneList setScene={setScene} scene={scene} />
+          )}
+
           <button
             className="bg-neutral-950 w-36 rounded-2xl font-extrabold text-white py-4 mt-10"
             onClick={handleSubmit}

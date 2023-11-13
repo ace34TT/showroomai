@@ -3,7 +3,7 @@ import React from "react";
 const SceneCard = ({ name, image, className }) => {
   return (
     <div
-      className={`w-96 h-56 relative cursor-pointer overflow-hidden rounded-2xl ${className}`}
+      className={`w-72 h-48 xl:w-96 xl:h-56 relative cursor-pointer overflow-hidden rounded-2xl ${className}`}
     >
       <img
         src={image}

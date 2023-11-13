@@ -16,13 +16,15 @@ const SceneList = ({ setScene, scene }) => {
       if (window.innerWidth >= 1536) {
         setSlidesPerView(3);
       } else if (window.innerWidth >= 1280) {
-        setSlidesPerView(3);
-      } else if (window.innerWidth >= 1024) {
-        setSlidesPerView(3);
-      } else if (window.innerWidth >= 512) {
-        setSlidesPerView(3);
-      } else {
         setSlidesPerView(2);
+      } else if (window.innerWidth >= 1024) {
+        setSlidesPerView(2);
+      } else if (window.innerWidth >= 912) {
+        setSlidesPerView(2);
+      } else if (window.innerWidth >= 740) {
+        setSlidesPerView(2);
+      } else {
+        setSlidesPerView(1);
       }
     };
     window.addEventListener("resize", handleResize);
@@ -35,8 +37,8 @@ const SceneList = ({ setScene, scene }) => {
   }, []);
   return (
     <>
-      <div className="mt-auto flex w-11/12 2xl:w-10/12 justify-center">
-        <div className="relative mt-auto flex w-full items-center justify-center rounded-lg p-4 ">
+      <div className="mt-auto flex w-10/12 lg:w-10/12 justify-center">
+        <div className="relative mt-auto flex w-full items-center justify-center rounded-lg">
           <div ref={prevRef} className="">
             <AiFillCaretLeft
               size={42}
@@ -73,26 +75,6 @@ const SceneList = ({ setScene, scene }) => {
                         />
                       </div>
                     </SwiperSlide>
-                    {/* <SwiperSlide
-                      className="flex h-full items-center justify-center"
-                      key={key}
-                    >
-                      <SceneCard
-                        name={item.name}
-                        image={item.image}
-                        key={key}
-                      />
-                    </SwiperSlide>
-                    <SwiperSlide
-                      className="flex h-full items-center justify-center"
-                      key={key}
-                    >
-                      <SceneCard
-                        name={item.name}
-                        image={item.image}
-                        key={key}
-                      />
-                    </SwiperSlide> */}
                   </>
                 );
               })}

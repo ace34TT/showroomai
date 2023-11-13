@@ -1,5 +1,7 @@
 .hero_section {
-  background: no-repeat;
+  background-repeat: no-repeat;
   background-size: cover;
   background-image: url("./../../assets/hero_bg.png");
+  /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("./../../assets/hero_bg.png"); */
 }
