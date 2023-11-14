@@ -1,6 +1,7 @@
 import Testimonials from "./../components/Testimonials";
 import AppSection from "./../components/AppSection";
-import React from "react";
+
+import Footer from "./../components/Footer";
 
 const LandingPage = () => {
   const scrollToSection = () => {
@@ -12,7 +13,7 @@ const LandingPage = () => {
   };
   return (
     <>
-      <section className="relative hero_section h-screen -mt-20 z-0 flex lg:block items-center lg:pt-44 prose max-w-none md:px-10  lg:px-20">
+      <section className="relative hero_section h-screen  z-0 flex lg:block items-center lg:pt-44 prose max-w-none md:px-10  lg:px-20">
         <div className="z-10 flex lg:absolute lg:block  flex-col items-center mx-auto px-10">
           <h1 className=" text-4xl md:text-7xl lg:text-8xl max-w-4xl font-extrabold text-white leading-none mb-5 text-center lg:text-left">
             Your perfect car <br /> picture in a

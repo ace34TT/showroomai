@@ -7,9 +7,12 @@ import { useNavigate } from "react-router-dom";
 import { PuffLoader } from "react-spinners";
 import { isMobile } from "react-device-detect";
 import SceneCard from "./SceneCard";
+import { useDispatch, useSelector } from "react-redux";
+import { decrementToken } from "./../features/auth.features";
 
 const AppSection = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [scene, setScene] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -42,13 +45,20 @@ const AppSection = () => {
   });
   const handleSubmit = async () => {
     setIsLoading(true);
+    if (user && access.credits === 0) return;
     const result = await makeRequest(
       `A car in a ${scenes[scene].prompt}, commercial photoshoot`,
       image
     );
     setIsLoading(false);
     navigate(`/result?image=${encodeURIComponent(result.image)}`);
+    if (user && access.credits > 0) dispatch(decrementToken());
   };
+  // access control
+  // @ts-ignore
+  const user = useSelector((state) => state.auth_asdJ4Kh2a.user);
+  // @ts-ignore
+  const access = useSelector((state) => state.auth_asdJ4Kh2a.access);
   return (
     <>
       {/* <LoadingScreen isLoading={isLoading} /> */}
@@ -72,11 +82,13 @@ const AppSection = () => {
           </h1>
           <div
             {...getRootProps()}
-            className={`w-full md:w-10/12 lg:w-6/12 aspect-w-10 aspect-h-8  md:aspect-h-4 lg:aspect-h-2 mx-auto ${
-              !image && `border-dashed border-2 border-[#00D1FF] `
-            }  rounded-md overflow-hidden cursor-pointer`}
+            className={`w-full md:w-10/12 lg:w-6/12 aspect-w-10 aspect-h-8  md:aspect-h-4 lg:aspect-h-2 mx-auto rounded-md overflow-hidden ${
+              user
+                ? !image && "border-dashed border-2 border-[#00D1FF]"
+                : "bg-neutral-100 border-dashed border-2 border-neutral-500"
+            }`}
           >
-            <input {...getInputProps({ disabled: false })} />
+            <input {...getInputProps({ disabled: user ? false : true })} />
             {image ? (
               <div className="w-full h-full">
                 <img
@@ -87,13 +99,7 @@ const AppSection = () => {
               </div>
             ) : (
               <div className=" h-full flex justify-center items-center flex-col">
-                <button
-                  className={`font-semibold px-8 py-4`}
-                  type="button"
-                  disabled={false}
-                >
-                  Upload an image
-                </button>
+                <p className={`font-semibold px-8 py-4`}>Upload an image</p>
                 <p className={``}>... or Drag 'n' drop an image</p>
               </div>
             )}
@@ -110,25 +116,47 @@ const AppSection = () => {
                       name={item.name}
                       image={item.image}
                       key={key}
-                      className={
+                      className={`${
                         scene === key ? "border-2 border-neutral-900" : ""
-                      }
+                      } `}
+                      imageStyle={!user && "grayscale"}
                     />
                   </div>
                 );
               })}
             </div>
           ) : (
-            <SceneList setScene={setScene} scene={scene} />
+            <SceneList setScene={setScene} scene={scene} user={user} />
           )}
-
-          <button
-            className="bg-neutral-950 w-36 rounded-2xl font-extrabold text-white py-4 mt-10"
-            onClick={handleSubmit}
-            // disabled={image && scene}
-          >
-            Generate
-          </button>
+          {user ? (
+            <>
+              {access && access.credits === 0 ? (
+                <span className="font-bold text-red-500 mt-10">
+                  You are running out of credits , please upgrade your plan !
+                </span>
+              ) : (
+                <button
+                  className={`
+            ${
+              !(user && image && scene !== null && scene !== undefined)
+                ? "bg-neutral-200 text-neutral-500"
+                : "bg-neutral-950 text-white"
+            }
+               w-36 rounded-2xl font-extrabold  py-2 mt-10`}
+                  onClick={handleSubmit}
+                  disabled={
+                    !(user && image && scene !== null && scene !== undefined)
+                  }
+                >
+                  Generate
+                </button>
+              )}
+            </>
+          ) : (
+            <p className="font-bold text-red-500 mt-10">
+              Please sign in first to use this app{" "}
+            </p>
+          )}
         </div>
       )}
     </>

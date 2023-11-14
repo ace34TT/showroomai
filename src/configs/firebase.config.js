@@ -9,12 +9,12 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDwi1-7FCiVkDcAE2sMWw6GH6vr6Ldhb1Y",
-  authDomain: "file-server-f5b74.firebaseapp.com",
-  projectId: "file-server-f5b74",
-  storageBucket: "file-server-f5b74.appspot.com",
-  messagingSenderId: "570131214361",
-  appId: "1:570131214361:web:681c5554f1fb9232e5fa88",
+  apiKey: "AIzaSyALW4RgAQ894fpWpZ-nJ9Ury0cMSxA0QbU",
+  authDomain: "photoroomai.firebaseapp.com",
+  projectId: "photoroomai",
+  storageBucket: "photoroomai.appspot.com",
+  messagingSenderId: "517721969487",
+  appId: "1:517721969487:web:c499838abe135c1afeab3a",
 };
 
 // Initialize Firebase

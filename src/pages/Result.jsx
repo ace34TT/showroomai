@@ -15,7 +15,7 @@ const Result = () => {
     );
   };
   return (
-    <div className="h-screen flex items-center -mt-20 lg:mt-0">
+    <div className="lg:h-fit h-screen flex items-center pt-20 lg:mt-0">
       <div className="relative w-10/12 mx-auto h-96 md:h-auto lg:max-h-screen lg:h-screen flex flex-col justify-center items-center py-12">
         <img
           src={decodeURIComponent(image)}

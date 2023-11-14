@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { scenes } from "./../assets/scenes";
 import SceneCard from "./SceneCard";
-const SceneList = ({ setScene, scene }) => {
+const SceneList = ({ setScene, scene, user }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const [slidesPerView, setSlidesPerView] = useState(1);
@@ -72,6 +72,7 @@ const SceneList = ({ setScene, scene }) => {
                           className={
                             scene === key ? "border-2 border-neutral-900" : ""
                           }
+                          imageStyle={!user && "grayscale"}
                         />
                       </div>
                     </SwiperSlide>
