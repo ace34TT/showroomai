@@ -62,12 +62,12 @@ export const signUpUserSvc = async (/** @type {string} */ uid) => {
   try {
     const docRef = await addDoc(collection(firestore, "access"), {
       uid: uid,
-      credits: 3,
+      credits: 1,
     });
     return {
       _id: docRef.id,
       uid: uid,
-      credits: 3,
+      credits: 1,
     };
   } catch (error) {
     console.log(error.message);

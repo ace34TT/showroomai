@@ -5,6 +5,7 @@ import LandingPage from "./pages/LandingPage";
 import Result from "./pages/Result";
 import TermsOfUse from "./pages/TermsOfUse";
 import PrivacyAndPolicy from "./pages/PrivacyAndPolicy";
+import Plan from "./pages/Plan";
 // import PrivacyPolicy from "./pages/PrivacyPolicy";
 // PrivacyAndPolicy
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="result" element={<Result />} />
         <Route path="terms-of-use" element={<TermsOfUse />} />
         <Route path="privacy-policy" element={<PrivacyAndPolicy />} />
+        <Route path="plan" element={<Plan />}></Route>
       </Route>
     </Routes>
   );
